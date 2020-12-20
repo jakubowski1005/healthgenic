@@ -5,10 +5,7 @@ import com.wwsis.modelowanie.healthgenic.service.MessageService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,17 +26,17 @@ public class MessageController {
         return service.findById(id);
     }
 
-    @GetMapping("/messages")
+    @PostMapping("/messages")
     public Message send(@RequestBody Message message) {
         return service.send(message);
     }
 
-    @GetMapping("/messages/{id}")
+    @PutMapping("/messages/{id}")
     public Message update(@PathVariable String id, @RequestBody Message message) {
         return service.update(id, message);
     }
 
-    @GetMapping("/messages/{id}")
+    @DeleteMapping("/messages/{id}")
     public void delete(@PathVariable String id) {
         service.delete(id);
     }

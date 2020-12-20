@@ -1,9 +1,12 @@
 package com.wwsis.modelowanie.healthgenic.dao;
 
 import com.wwsis.modelowanie.healthgenic.model.Measurement;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+@Repository
 public class MeasurementTempRepository {
     public static Map<String, Measurement> db;
 

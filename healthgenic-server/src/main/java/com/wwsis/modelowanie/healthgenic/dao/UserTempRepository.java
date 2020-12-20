@@ -1,11 +1,14 @@
 package com.wwsis.modelowanie.healthgenic.dao;
 
 import com.wwsis.modelowanie.healthgenic.model.User;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+@Repository
 public class UserTempRepository {
     public static Map<String, User> db;
 

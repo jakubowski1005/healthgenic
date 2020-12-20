@@ -36,7 +36,7 @@ public class MeasurementController {
         return service.update(id, measurement);
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/measurements/{id}")
     public void delete(@PathVariable String id) {
         service.delete(id);
     }

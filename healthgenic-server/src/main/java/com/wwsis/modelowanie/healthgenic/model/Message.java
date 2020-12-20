@@ -2,11 +2,9 @@ package com.wwsis.modelowanie.healthgenic.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-@Document
 @Data
 @Builder
 @NoArgsConstructor

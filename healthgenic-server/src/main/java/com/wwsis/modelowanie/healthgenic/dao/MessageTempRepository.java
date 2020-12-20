@@ -1,11 +1,14 @@
 package com.wwsis.modelowanie.healthgenic.dao;
 
 import com.wwsis.modelowanie.healthgenic.model.Message;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+@Repository
 public class MessageTempRepository {
     public static Map<String, Message> db;
 
