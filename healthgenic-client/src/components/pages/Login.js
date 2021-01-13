@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import FormSignUp from "./formSign/FormSignUp";
-import Login from "./Login";
+import FormLogin from "./formSign/FormLogin";
+import Doctor from "../../doctor/Doctor";
 import Footer from "../Footer";
 import "../../App.css";
 
-const SignUp = () => {
+const Login = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   function submitForm() {
@@ -13,11 +13,11 @@ const SignUp = () => {
 
   return (
     <>
-      <div className="form-container">
+      <div className="form-container2">
         <div className="form-content-left">
-          <img className="form-img" src="images/img-med.jpg" />
+          <img className="form-img" src="images/img-medical.jpg" />
         </div>
-        {!isSubmitted ? <FormSignUp submitForm={submitForm} /> : <Login />}
+        {!isSubmitted ? <FormLogin submitForm={submitForm} /> : <Doctor />}
       </div>
 
       <Footer />
@@ -25,4 +25,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Login;
