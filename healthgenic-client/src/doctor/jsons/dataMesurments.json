@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "ownerId": 1,
+    "type": "temp",
+    "date" : "2020-12-28",
+    "value": "36.7",
+    "unit": "°C"
+  },
+  {
+    "id": 2,
+    "ownerId": 3,
+    "type": "temp",
+    "date" : "2020-12-28",
+    "value": "36.7",
+    "unit": "°C"
+  },
+  {
+    "id": 3,
+    "ownerId": 1,
+    "type": "weight",
+    "date" : "2020-12-28",
+    "value": "52",
+    "unit": "kg"
+  },
+  {
+    "id": 4,
+    "ownerId": 2,
+    "type": "weight",
+    "date" : "2020-12-28",
+    "value": "52",
+    "unit": "kg"
+  },
+  {
+    "id": 5,
+    "ownerId": 1,
+    "type": "blood glucose concentration",
+    "date" : "2020-12-28",
+    "value": "88",
+    "unit": "mg/dl"
+  }
+]
