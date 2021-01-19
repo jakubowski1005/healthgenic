@@ -1,0 +1,251 @@
+.form-container-l {
+  height: 95vh;
+  width: 100%;
+  display: grid;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+  position: relative;
+  grid-template-columns: 0.5fr 2fr;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.form-content-left-l {
+  /* background: linear-gradient(90deg, #1c1c1c 0%, #1a1818 100%);
+ */
+  background: linear-gradient(90deg, rgb(28, 28, 28) 0%, rgb(26, 24, 24) 100%);
+  padding-top: 20px;
+  font-size: 20px;
+  position: relative;
+}
+
+.form-content-right-l {
+  position: relative;
+  padding: 40px;
+  background: #eeeef1;
+}
+
+.form-l {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-l h1 {
+  font-size: 30px;
+  text-align: start;
+  width: 80%;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.form-l h5 {
+  font-size: 100px;
+  text-align: start;
+  width: 80%;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.form-inputs-l {
+  margin-bottom: 12px;
+  width: 80%;
+}
+
+.form-inputs-l p {
+  font-size: 12px;
+  margin-top: 0.5rem;
+  color: #f00e0e;
+}
+
+.form-label-l {
+  display: inline-block;
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.form-input-l {
+  display: block;
+  padding-left: 10px;
+  outline: none;
+  border-radius: 2px;
+  height: 40px;
+  width: 100%;
+  border: none;
+}
+
+.form-input-btn-l {
+  width: 80%;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 2px;
+  font-size: 20px;
+  background-color: transparent;
+  color: #fff;
+  padding: 8px 20px;
+  border: 1px solid var(--primary);
+  transition: all 0.3s ease-out;
+}
+
+@media screen and (max-width: 960px) {
+  .form-container-l {
+    grid-template-columns: 0.8fr 2fr;
+  }
+
+  .form-img-l {
+    width: 100%;
+    height: 90%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .form-container-l {
+    grid-template-columns: 0.8fr 2fr;
+  }
+  .form-img-l {
+    width: 100%;
+    height: 80%;
+  }
+}
+
+#table-names {
+  border-collapse: collapse;
+  padding-top: 10px;
+  width: 100%;
+  color: #ffffff;
+}
+
+#table-names td,
+#table-names th {
+  border: 1px transparent;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+#table-names tr:nth-child(even) {
+  background-color: #fff;
+}
+
+#table-names tr:hover {
+  cursor: pointer;
+  transition: all 0.4s ease-out;
+  transition: all 0.3s ease-out;
+  background: #fff;
+  color: #242424;
+  transition: 250ms;
+}
+
+#table-names th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: transparent;
+  color: white;
+}
+
+#table-measurments {
+  border-collapse: collapse;
+  padding-top: 50px;
+  width: 60%;
+  color: rgb(0, 0, 0);
+}
+
+#table-measurments td,
+#table-measurments th {
+  border: 1.5px solid rgb(10, 10, 10);
+  width: 28%;
+  padding: 8px;
+}
+
+#table-measurments tr:nth-child(even) {
+  background-color: #fff;
+}
+
+#table-measurments tr:hover {
+  cursor: pointer;
+  transition: all 0.4s ease-out;
+  transition: all 0.3s ease-out;
+  background: #fff;
+  color: #242424;
+  transition: 250ms;
+}
+
+#table-measurments th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: transparent;
+  color: rgb(0, 0, 0);
+}
+
+.select-css {
+  display: block;
+  font-size: 15px;
+  color: rgb(0, 0, 0);
+  padding: 0.4em 1em 0.4em 0.5em;
+  width: 22%;
+  max-width: 100%; /* useful when width is set to anything other than 100% */
+  box-sizing: border-box;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  border: 1.5px solid rgb(0, 0, 0);
+  border-radius: 0.5em;
+  background-color: transparent;
+}
+
+/* Hover style */
+.select-css:hover {
+  border-color: rgb(0, 0, 0);
+}
+
+.selectCustom-options {
+  position: absolute;
+  border: 1.5px solid #6f6f6f;
+  border-radius: 0.4rem;
+  background-color: #fcfcfc;
+  box-shadow: 0 0 4px #e9e1f8;
+  padding: 0.8rem 0;
+}
+
+.selectCustom-options:hover {
+  background-color: #1a1818;
+}
+
+.select-css::after {
+  content: "\25BC";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: 0.25s all ease;
+  -o-transition: 0.25s all ease;
+  transition: 0.25s all ease;
+}
+
+@media screen and (max-width: 960px) {
+  .select-css {
+    width: 50%;
+  }
+  #table-measurments {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .select-css {
+    width: 68%;
+  }
+  #table-measurments {
+    width: 100%;
+  }
+}

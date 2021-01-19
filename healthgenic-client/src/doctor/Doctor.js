@@ -1,10 +1,13 @@
 import React from "react";
+import NavbarD from "./NavbarD";
+import ProfileD from "./ProfileD";
 
 const Doctor = () => {
   return (
-    <div className="form-conten-right">
-      <div className="form-succes">We have received your request!</div>
-    </div>
+    <>
+      <NavbarD />
+      <ProfileD />
+    </>
   );
 };
 

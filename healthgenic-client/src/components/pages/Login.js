@@ -3,6 +3,8 @@ import FormLogin from "./formSign/FormLogin";
 import Doctor from "../../doctor/Doctor";
 import Footer from "../Footer";
 import "../../App.css";
+import "./formSign/Form.css";
+import Navbar from "../Navbar";
 
 const Login = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -13,14 +15,24 @@ const Login = () => {
 
   return (
     <>
-      <div className="form-container2">
-        <div className="form-content-left">
-          <img className="form-img" src="images/img-medical.jpg" />
-        </div>
-        {!isSubmitted ? <FormLogin submitForm={submitForm} /> : <Doctor />}
-      </div>
-
-      <Footer />
+      {!isSubmitted ? (
+        <React.Fragment>
+          <Navbar />
+          <div className="form-container2">
+            <div className="form-content-left">
+              <img
+                className="form-img"
+                alt="LOGIN"
+                src="images/img-medical.jpg"
+              />
+            </div>
+            <FormLogin submitForm={submitForm} />
+          </div>
+          <Footer />
+        </React.Fragment>
+      ) : (
+        <Doctor />
+      )}
     </>
   );
 };

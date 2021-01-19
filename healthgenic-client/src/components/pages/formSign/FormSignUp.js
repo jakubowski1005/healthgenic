@@ -3,7 +3,7 @@ import useForm from "./useForm";
 import validate from "./validateInfo";
 import "./Form.css";
 
-const FormSignUp = ({ submitForm }) => {
+const FormSignUp = ({ submitForm, isOn, handleToggle, onColor }) => {
   const { handleChange, handleSubmit, values, errors } = useForm(
     submitForm,
     validate
@@ -11,11 +11,8 @@ const FormSignUp = ({ submitForm }) => {
 
   return (
     <div className="form-content-right">
-      <form className="form" onSubmit={handleSubmit} noValidate>
-        <h1>
-          Get started with us today! Create your accont by filling out the
-          information below
-        </h1>
+      <form onSubmit={handleSubmit} className="form" noValidate>
+        <h1>Get started with us today!</h1>
         <div className="form-inputs">
           <label className="form-label">Username</label>
           <input
@@ -29,7 +26,32 @@ const FormSignUp = ({ submitForm }) => {
           />
           {errors.username && <p>{errors.username}</p>}
         </div>
-
+        <div className="form-inputs">
+          <label className="form-label">First name</label>
+          <input
+            id="firstName"
+            type="text"
+            name="firstName"
+            className="form-input"
+            placeholder="Enter your first name"
+            value={values.firstName}
+            onChange={handleChange}
+          />
+          {errors.firstName && <p>{errors.firstName}</p>}
+        </div>
+        <div className="form-inputs">
+          <label className="form-label">Last name</label>
+          <input
+            id="lastName"
+            type="text"
+            name="lastName"
+            className="form-input"
+            placeholder="Enter your last name"
+            value={values.lastName}
+            onChange={handleChange}
+          />
+          {errors.lastName && <p>{errors.lastName}</p>}
+        </div>
         <div className="form-inputs">
           <label htmlFor="email" className="form-label">
             Email
@@ -45,7 +67,6 @@ const FormSignUp = ({ submitForm }) => {
           />
           {errors.email && <p>{errors.email}</p>}
         </div>
-
         <div className="form-inputs">
           <label htmlFor="password" className="form-label">
             Password
@@ -61,7 +82,6 @@ const FormSignUp = ({ submitForm }) => {
           />
           {errors.password && <p>{errors.password}</p>}
         </div>
-
         <div className="form-inputs">
           <label htmlFor="password2" className="form-label">
             Confirm Password
@@ -78,6 +98,25 @@ const FormSignUp = ({ submitForm }) => {
           {errors.password2 && <p>{errors.password2}</p>}
         </div>
 
+        <div className="switch-la">
+          <div className="text-la">Patient</div>
+          <input
+            checked={isOn}
+            onChange={handleToggle}
+            className="react-switch-checkbox"
+            id={`react-switch-new`}
+            type="checkbox"
+          />
+          <label
+            style={{ background: isOn && onColor }}
+            className="react-switch-label"
+            htmlFor={`react-switch-new`}
+          >
+            <span className={`react-switch-button`}></span>
+          </label>
+          <div className="text-la">Doctor </div>
+          {errors.role && <p>{errors.role}</p>}
+        </div>
         <button className="form-input-btn" type="submit">
           Sign up
         </button>
