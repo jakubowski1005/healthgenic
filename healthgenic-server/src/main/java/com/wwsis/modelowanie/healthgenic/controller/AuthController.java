@@ -28,4 +28,6 @@ public class AuthController {
     public String login(@Valid @RequestBody SigninRequest request) {
         return service.login(request.getLogin(), request.getPassword());
     }
+
+
 }

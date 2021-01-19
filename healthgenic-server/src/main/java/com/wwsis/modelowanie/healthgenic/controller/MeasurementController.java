@@ -5,6 +5,7 @@ import com.wwsis.modelowanie.healthgenic.service.MeasurementService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,16 +28,19 @@ public class MeasurementController {
     }
 
     @PostMapping("/measurements")
+    @PreAuthorize("hasRole('ROLE_DOCTOR')")
     public Measurement insert(@RequestBody Measurement measurement) {
         return service.insert(measurement);
     }
 
     @PutMapping("/measurements/{id}")
+    @PreAuthorize("hasRole('ROLE_DOCTOR')")
     public Measurement update(@PathVariable String id, @RequestBody Measurement measurement) {
         return service.update(id, measurement);
     }
 
     @DeleteMapping("/measurements/{id}")
+    @PreAuthorize("hasRole('ROLE_DOCTOR')")
     public void delete(@PathVariable String id) {
         service.delete(id);
     }
