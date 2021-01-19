@@ -1,6 +1,6 @@
 package com.wwsis.modelowanie.healthgenic.service;
 
-import com.wwsis.modelowanie.healthgenic.dao.MessageTempRepository;
+import com.wwsis.modelowanie.healthgenic.dao.MessageRepository;
 import com.wwsis.modelowanie.healthgenic.model.Message;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,7 @@ import java.util.List;
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class MessageServiceImpl implements MessageService {
 
-    MessageTempRepository repository;
+    MessageRepository repository;
 
     @Override
     public List<Message> findAll() {
@@ -23,7 +23,7 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public Message findById(String id) {
-        return repository.findById(id);
+        return repository.findById(id).orElse(null);
     }
 
     @Override
@@ -33,11 +33,12 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public Message update(String id, Message message) {
-        return repository.update(id, message);
+        message.setId(id);
+        return repository.save(message);
     }
 
     @Override
     public void delete(String id) {
-        repository.delete(id);
+        repository.deleteById(id);
     }
 }

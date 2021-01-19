@@ -1,6 +1,6 @@
 package com.wwsis.modelowanie.healthgenic.service;
 
-import com.wwsis.modelowanie.healthgenic.dao.UserTempRepository;
+import com.wwsis.modelowanie.healthgenic.dao.UserRepository;
 import com.wwsis.modelowanie.healthgenic.model.User;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,7 @@ import java.util.List;
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class UserServiceImpl implements UserService {
 
-    UserTempRepository repository;
+    UserRepository repository;
 
     @Override
     public List<User> findAll() {
@@ -23,16 +23,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(String id) {
-        return repository.findById(id);
+        return repository.findById(id).orElse(null);
     }
 
     @Override
     public User update(String id, User user) {
-        return repository.update(id, user);
+        user.setId(id);
+        return repository.save(user);
     }
 
     @Override
     public void delete(String id) {
-        repository.delete(id);
+        repository.deleteById(id);
     }
 }

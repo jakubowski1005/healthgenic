@@ -1,6 +1,6 @@
 package com.wwsis.modelowanie.healthgenic.service;
 
-import com.wwsis.modelowanie.healthgenic.dao.MeasurementTempRepository;
+import com.wwsis.modelowanie.healthgenic.dao.MeasurementRepository;
 import com.wwsis.modelowanie.healthgenic.model.Measurement;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,7 @@ import java.util.List;
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class MeasurementServiceImpl implements MeasurementService {
 
-    MeasurementTempRepository repository;
+    MeasurementRepository repository;
 
     @Override
     public List<Measurement> findAll() {
@@ -23,7 +23,7 @@ public class MeasurementServiceImpl implements MeasurementService {
 
     @Override
     public Measurement findById(String id) {
-        return repository.findById(id);
+        return repository.findById(id).orElse(null);
     }
 
     @Override
@@ -33,11 +33,12 @@ public class MeasurementServiceImpl implements MeasurementService {
 
     @Override
     public Measurement update(String id, Measurement measurement) {
-        return repository.update(id, measurement);
+        measurement.setId(id);
+        return repository.save(measurement);
     }
 
     @Override
     public void delete(String id) {
-        repository.delete(id);
+        repository.deleteById(id);
     }
 }

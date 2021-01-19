@@ -1,6 +1,6 @@
 package com.wwsis.modelowanie.healthgenic.service;
 
-import com.wwsis.modelowanie.healthgenic.dao.UserTempRepository;
+import com.wwsis.modelowanie.healthgenic.dao.UserRepository;
 import com.wwsis.modelowanie.healthgenic.model.User;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -13,34 +13,35 @@ import org.springframework.stereotype.Service;
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class AuthServiceImpl implements AuthService {
 
-    UserTempRepository repository;
+    UserRepository repository;
 
     @Override
-    public User login(String login, String password) {
+    public String login(String login, String password) {
         return repository.findAll()
                 .stream()
                 .filter(user -> user.getUsername().equals(login) && user.getPassword().equals(password))
                 .findFirst()
+                .map(found -> "token")
                 .orElse(null);
     }
 
     @Override
     @SneakyThrows
-    public User register(String login, String email, String password) {
+    public String register(String login, String email, String password) {
         var found = repository.findAll()
                 .stream()
                 .filter(user -> user.getUsername().equals(login) || user.getEmail().equals(email))
                 .findFirst()
                 .orElse(null);
 
-        if (found != null) throw new Exception("Err");
+        if (found != null) throw new Exception("User with provided credentials exists.");
 
-        User created = User.builder()
+        repository.insert(User.builder()
                 .email(email)
                 .username(login)
                 .password(password)
-                .build();
+                .build());
 
-        return repository.insert(created);
+        return "You can log in to HeathGenic now.";
     }
 }
