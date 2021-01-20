@@ -26,14 +26,11 @@ public class JwtProvider implements Serializable {
 
     private Clock clock = DefaultClock.INSTANCE;
 
-    @Autowired
     private UserRepository userRepository;
 
-    @Value("${jwt.signing.key.secret}")
-    private String secret;
+    private String secret = "sekret";
 
-    @Value("${jwt.token.expiration.in.seconds}")
-    private Long expiration;
+    private Long expiration = 3600L;
 
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
