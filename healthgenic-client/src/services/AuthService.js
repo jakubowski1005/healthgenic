@@ -10,7 +10,8 @@ const URL_LOGOUT = 'http://localhost:3000/'
         email: email,
         password: pass,
         name: imie,
-        surname: nazwisko
+        surname: nazwisko,
+        role: "DOCTOR" / "PATIENT"
     }
  */
 export const register = async body => {
