@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.Map;
 
 @RestController
 @AllArgsConstructor
@@ -20,12 +21,12 @@ public class AuthController {
     AuthService service;
 
     @PostMapping("/auth/register")
-    public String register(@Valid @RequestBody SignupRequest request) {
-        return service.register(request.getLogin(), request.getEmail(), request.getPassword());
+    public Map<String, String> register(@Valid @RequestBody SignupRequest request) {
+        return service.register(request.getLogin(), request.getEmail(), request.getPassword(), request.getRole());
     }
 
     @PostMapping("/auth/login")
-    public String login(@Valid @RequestBody SigninRequest request) {
+    public Map<String, String> login(@Valid @RequestBody SigninRequest request) {
         return service.login(request.getLogin(), request.getPassword());
     }
 
