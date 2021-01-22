@@ -3,34 +3,27 @@ package com.wwsis.modelowanie.healthgenic.security;
 import com.wwsis.modelowanie.healthgenic.dao.UserRepository;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.impl.DefaultClock;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
 @Component
-public class JwtProvider implements Serializable {
-
-    private static final long serialVersionUID = -3301605591108950415L;
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    private Clock clock = DefaultClock.INSTANCE;
-
-    private UserRepository userRepository;
-
-    private String secret = "sekret";
-
-    private Long expiration = 3600L;
+@Slf4j
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+public class JwtProvider {
+    Clock CLOCK = DefaultClock.INSTANCE;
+    String SECRET = "s3cr3t";
+    Long EXPIRATION = 3600L;
 
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
@@ -50,17 +43,18 @@ public class JwtProvider implements Serializable {
     }
 
     private Claims getAllClaimsFromToken(String token) {
-        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+        return Jwts.parser()
+                .setSigningKey(SECRET)
+                .parseClaimsJws(token)
+                .getBody();
     }
 
     private Boolean isTokenExpired(String token) {
-        final Date expiration = getExpirationDateFromToken(token);
-        return expiration.before(clock.now());
+        return getExpirationDateFromToken(token).before(CLOCK.now());
     }
 
     private Boolean ignoreTokenExpiration(String token) {
-        String myUsername = "healthgenic";
-        return getUsernameFromToken(token).equals(myUsername);
+        return getUsernameFromToken(token).equals(SECRET);
     }
 
     public String generateToken(UserDetails userDetails) {
@@ -70,49 +64,50 @@ public class JwtProvider implements Serializable {
 
     public String generateTokenFromAuthentication(Authentication authentication) {
         JwtUserPrincipal user = (JwtUserPrincipal) authentication.getPrincipal();
-        Date expiryTime = new Date(new Date().getTime() + expiration);
+        Date expiryTime = new Date(new Date().getTime() + EXPIRATION);
 
         return Jwts.builder()
                 .setSubject(user.getUsername())
                 .setIssuedAt(new Date())
                 .setExpiration(expiryTime)
-                .signWith(SignatureAlgorithm.HS512, secret)
+                .signWith(SignatureAlgorithm.HS512, SECRET)
                 .compact();
     }
 
     public String getUsernameFromJWT(String token) {
-        Claims claims = Jwts.parser()
-                .setSigningKey(secret)
+        return Jwts.parser()
+                .setSigningKey(SECRET)
                 .parseClaimsJws(token)
-                .getBody();
-
-        return claims.getSubject();
+                .getBody()
+                .getSubject();
     }
 
     public boolean validateToken(String authToken) {
         try {
-            Jwts.parser().setSigningKey(secret).parseClaimsJws(authToken);
+            Jwts.parser()
+                    .setSigningKey(SECRET)
+                    .parseClaimsJws(authToken);
             return true;
         } catch (SignatureException ex) {
-            logger.error("Invalid JWT signature");
+            log.error("Invalid JWT signature");
         } catch (MalformedJwtException ex) {
-            logger.error("Invalid JWT token");
+            log.error("Invalid JWT token");
         } catch (ExpiredJwtException ex) {
-            logger.error("Expired JWT token");
+            log.error("Expired JWT token");
         } catch (UnsupportedJwtException ex) {
-            logger.error("Unsupported JWT token");
+            log.error("Unsupported JWT token");
         } catch (IllegalArgumentException ex) {
-            logger.error("JWT claims string is empty.");
+            log.error("JWT claims string is empty.");
         }
         return false;
     }
 
     private String doGenerateToken(Map<String, Object> claims, String subject) {
-        final Date createdDate = clock.now();
+        final Date createdDate = CLOCK.now();
         final Date expirationDate = calculateExpirationDate(createdDate);
 
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(createdDate)
-                .setExpiration(expirationDate).signWith(SignatureAlgorithm.HS512, secret).compact();
+                .setExpiration(expirationDate).signWith(SignatureAlgorithm.HS512, SECRET).compact();
     }
 
     public Boolean canTokenBeRefreshed(String token) {
@@ -120,14 +115,14 @@ public class JwtProvider implements Serializable {
     }
 
     public String refreshToken(String token) {
-        final Date createdDate = clock.now();
+        final Date createdDate = CLOCK.now();
         final Date expirationDate = calculateExpirationDate(createdDate);
 
         final Claims claims = getAllClaimsFromToken(token);
         claims.setIssuedAt(createdDate);
         claims.setExpiration(expirationDate);
 
-        return Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.HS512, secret).compact();
+        return Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.HS512, SECRET).compact();
     }
 
     public Boolean validateToken(String token, UserDetails userDetails) {
@@ -137,6 +132,6 @@ public class JwtProvider implements Serializable {
     }
 
     private Date calculateExpirationDate(Date createdDate) {
-        return new Date(createdDate.getTime() + expiration * 1000);
+        return new Date(createdDate.getTime() + EXPIRATION * 1000);
     }
 }

@@ -1,63 +1,57 @@
 package com.wwsis.modelowanie.healthgenic.security;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wwsis.modelowanie.healthgenic.model.User;
-import lombok.Data;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class JwtUserPrincipal implements UserDetails {
+@Builder
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class JwtUserPrincipal extends User implements UserDetails {
 
-    private static final long serialVersionUID = 2353642365874363728L;
-
-    private final Long id;
-    private final String username;
-    private final String email;
-    private final String password;
-    private final Collection<? extends GrantedAuthority> authorities = new ArrayList<>();
+    String id;
+    String username;
+    String email;
+    String password;
+    Collection<? extends GrantedAuthority> authorities;
 
     public static JwtUserPrincipal create(User user) {
-        return new JwtUserPrincipal(user.getId(), user.getUsername(), user.getEmail(), user.getPassword(),user.getRoles());
+        return JwtUserPrincipal.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .password(user.getPassword())
+                .authorities(user.getRoles()
+                        .stream()
+                        .map(role -> new SimpleGrantedAuthority(role.name()))
+                        .collect(Collectors.toList()))
+                .build();
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
-    @Override
-    public String getPassword() {
-        return null;
-    }
-
-    @Override
-    public String getUsername() {
-        return null;
-    }
-
-    @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return false;
     }
 
-    @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return false;
     }
 
-    @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return false;
     }
 }

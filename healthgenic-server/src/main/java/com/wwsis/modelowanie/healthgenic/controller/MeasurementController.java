@@ -28,19 +28,19 @@ public class MeasurementController {
     }
 
     @PostMapping("/measurements")
-    @PreAuthorize("hasRole('ROLE_DOCTOR')")
+    @PreAuthorize("hasRole('ROLE_PATIENT')")
     public Measurement insert(@RequestBody Measurement measurement) {
         return service.insert(measurement);
     }
 
     @PutMapping("/measurements/{id}")
-    @PreAuthorize("hasRole('ROLE_DOCTOR')")
+    @PreAuthorize("hasRole('ROLE_PATIENT')")
     public Measurement update(@PathVariable String id, @RequestBody Measurement measurement) {
         return service.update(id, measurement);
     }
 
     @DeleteMapping("/measurements/{id}")
-    @PreAuthorize("hasRole('ROLE_DOCTOR')")
+    @PreAuthorize("hasRole('ROLE_PATIENT')")
     public void delete(@PathVariable String id) {
         service.delete(id);
     }
