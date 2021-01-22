@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import dataMesurment from "../jsons/dataMesurments.json";
+import MeasurementService from "../../services/MeasurementService";
+import "../List.css";
 
-function MeasurementList({ patientId }) {
+function MeasurementList(props) {
+  const { PATIENT_USER_ID } = props;
+  // var dataMesurment = MeasurementService.getMeasurements(PATIENT_USER_ID);  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
   const [userInput, setUserInput] = useState("");
   const inputchangehandler = (event) => {
     setUserInput(event.target.value);
@@ -17,6 +22,28 @@ function MeasurementList({ patientId }) {
   };
 
   const types = _getUniqueCampusName();
+
+  const Measurements = ({ ownerId, type, date, value, unit, input }) => {
+    if (ownerId !== PATIENT_USER_ID) return <div />;
+    if (input !== type) return <div />;
+    return (
+      <table id="table-measurments">
+        <tbody>
+          <tr>
+            <td>
+              <h4>{date}</h4>
+            </td>
+            <td>
+              <h4>{value}</h4>
+            </td>
+            <td>
+              <h4>{unit}</h4>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    );
+  };
 
   return (
     <>
@@ -67,25 +94,4 @@ function MeasurementList({ patientId }) {
   );
 }
 
-const Measurements = ({ ownerId, type, date, value, unit, input }) => {
-  if (!ownerId) return <div />;
-  if (input !== type) return <div />;
-  return (
-    <table id="table-measurments">
-      <tbody>
-        <tr>
-          <td>
-            <h4>{date}</h4>
-          </td>
-          <td>
-            <h4>{value}</h4>
-          </td>
-          <td>
-            <h4>{unit}</h4>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  );
-};
 export default MeasurementList;

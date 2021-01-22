@@ -5,6 +5,7 @@ import Footer from "../Footer";
 import "../../App.css";
 import "./formSign/Form.css";
 import Navbar from "../Navbar";
+import LoginComponent from "./formSign/LoginComponent";
 
 const Login = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);

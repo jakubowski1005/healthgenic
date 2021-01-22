@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "../components/Button";
 import { Link } from "react-router-dom";
+import { Button } from "../components/Button";
+import AuthService from "../services/AuthService";
 import "../components/Navbar.css";
 
 function NavbarD() {
@@ -68,6 +69,7 @@ function NavbarD() {
                 to="/"
                 className="nav-links-mobile"
                 onClick={closeMobileMenu}
+                onClick={AuthService.logout}
               >
                 Sign out
               </Link>

@@ -1,17 +1,31 @@
 import React, { useState } from "react";
+import MessageService from "../../services/MessageService";
 import "./Compose.css";
 
-export default function Compose(props) {
+export default function Compose({ USER_ID, PATIENT_ID, date }) {
   const [state, setState] = useState({ message: "" });
+
+  const messageData = {
+    from: USER_ID,
+    to: PATIENT_ID,
+    sentAt: date,
+  };
 
   const handleChange = (event) => {
     setState({ message: event.target.value });
   };
 
   const handleSubmit = (event) => {
+    if (state.message === "") {
+      event.preventDefault();
+      return;
+    }
+    //setState({ message: event.target.value });
     console.log(state.message);
-    event.preventDefault(); //to usunąć jak zapisze się do jsona
-    setState({ message: event.target.value });
+    messageData["content"] = state.message;
+    console.log(messageData);
+    MessageService.sendMessage(messageData);
+    setState({ message: "" });
   };
 
   return (
@@ -29,7 +43,6 @@ export default function Compose(props) {
           Send
         </button>
       </form>
-      {props.rightItems}
     </div>
   );
 }

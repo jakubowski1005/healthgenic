@@ -45,15 +45,19 @@ const User = ({ firstName, lastName, email, username }) => {
           <input id="i2" class="col2" type="text" value={lastName} />
         </div>
         <div class="row2">
-          <label for="i1" class="col1">
+          <label for="i3" class="col1">
             Email :
           </label>
-          <input id="i1" class="col1" type="text" value={email} />
+          <label id="i3" class="col1">
+            {email}
+          </label>
 
-          <label for="i2" class="col2">
+          <label for="i4" class="col2">
             Username :
           </label>
-          <input id="i2" class="col2" type="text" value={username} />
+          <label id="i4" class="col2">
+            {username}
+          </label>
         </div>
       </formm>
     </>

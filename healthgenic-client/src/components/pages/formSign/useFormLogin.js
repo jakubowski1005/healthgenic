@@ -1,14 +1,11 @@
 import { useState, useEffect } from "react";
 import AuthService from "../../../services/AuthService";
+import userD from "../../../doctor/jsons/userD.json";
 
-const useForm = (callback, validate) => {
+const useFormLogin = (callback, validate) => {
   const [values, setValues] = useState({
-    username: "",
-    name: "",
-    surename: "",
     email: "",
     password: "",
-    password2: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -31,11 +28,11 @@ const useForm = (callback, validate) => {
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
-      AuthService.register(values); // !!!!!!!!!! AUTHSERVICE !!!!!!!!!!!!!!
+      AuthService.login(values); // !!!!!!!!!! AUTHSERVICE !!!!!!!!!!!!!!
     }
   }, [errors]);
 
   return { handleChange, handleSubmit, values, errors };
 };
 
-export default useForm;
+export default useFormLogin;

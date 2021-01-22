@@ -1,20 +1,37 @@
 import React, { useState } from "react";
 import NavbarD from "./NavbarD";
+import MeasurementList from "./messurments/MeasurementList";
+//SERWIS z LISTĄ PACJENTÓW !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 import patientData from "./jsons/patientList.json";
 import "./List.css";
-import MeasurementList from "./messurments/MeasurementList";
 
 export const PatientList = () => {
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [state, setState] = useState("");
 
-  function submitForm() {
-    setIsSubmitted(true);
-  }
+  const Patients = ({ patientid, firstName, lastName }) => {
+    if (!firstName) return <div />;
+    return (
+      <>
+        <table id="table-names">
+          <tbody>
+            <tr onClick={() => setState(patientid)}>
+              <td>
+                <h5>
+                  {firstName} {lastName}
+                </h5>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </>
+    );
+  };
 
   return (
     <>
       <NavbarD />
-      <div className="form-container-l">
+      <div className="form-container-m">
         <div className="form-content-left-l">
           {patientData.map((data, key) => {
             return (
@@ -29,48 +46,13 @@ export const PatientList = () => {
             );
           })}
         </div>
-        <div className="form-content-right-l">
-          {!isSubmitted ? (
-            <MeasurementList submitForm={submitForm} />
-          ) : (
-            <MeasurementList />
-          )}
+
+        <div className="form-content-right-m">
+          <MeasurementList PATIENT_USER_ID={state} />
         </div>
       </div>
     </>
   );
 };
-
-const Patients = ({ patientid, firstName, lastName }) => {
-  if (!firstName) return <div />;
-  return (
-    <>
-      <table id="table-names">
-        <tbody>
-          <tr data-user={patientid}>
-            <td>
-              <h5>
-                {firstName} {lastName}
-              </h5>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </>
-  );
-};
-
-document.addEventListener("DOMContentLoaded", () => {
-  const rows = document.querySelectorAll("tr[data-user");
-  console.log(rows);
-  let p_id = "";
-
-  rows.forEach((row) => {
-    row.addEventListener("click", () => {
-      console.log(row.dataset.user);
-      p_id = row.dataset.user;
-    });
-  });
-});
 
 export default PatientList;

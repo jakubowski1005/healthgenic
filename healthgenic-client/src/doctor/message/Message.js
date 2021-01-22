@@ -1,10 +1,33 @@
-import React from "react";
-import "./Message.css";
-import patientData from "../jsons/patientList.json";
+import React, { useState } from "react";
+
 import MessageForm from "./MessageForm";
 import NavbarD from "../NavbarD";
 
-export const Message = () => {
+import patientData from "../jsons/patientList.json";
+import "./Message.css";
+
+export function Message() {
+  const [state, setState] = useState("");
+
+  const Patients = ({ patientid, firstName, lastName }) => {
+    if (!firstName) return <div />;
+    return (
+      <>
+        <table id="table-names">
+          <tbody>
+            <tr onClick={() => setState(patientid)}>
+              <td>
+                <h5>
+                  {firstName} {lastName}
+                </h5>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </>
+    );
+  };
+
   return (
     <>
       <NavbarD />
@@ -25,43 +48,11 @@ export const Message = () => {
         </div>
 
         <div className="form-content-right-m">
-          <MessageForm />
+          <MessageForm PATIENT_USER_ID={state} />
         </div>
       </div>
     </>
   );
-};
-
-const Patients = ({ patientid, firstName, lastName }) => {
-  if (!firstName) return <div />;
-  return (
-    <>
-      <table id="table-names">
-        <tbody>
-          <tr data-user1={patientid}>
-            <td>
-              <h5>
-                {firstName} {lastName}
-              </h5>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </>
-  );
-};
-
-document.addEventListener("DOMContentLoaded", () => {
-  const rows = document.querySelectorAll("tr[data-user1");
-  console.log(rows);
-  let p_id = "";
-
-  rows.forEach((row) => {
-    row.addEventListener("click", () => {
-      console.log(row.dataset.user1);
-      p_id = row.dataset.user1;
-    });
-  });
-});
+}
 
 export default Message;
