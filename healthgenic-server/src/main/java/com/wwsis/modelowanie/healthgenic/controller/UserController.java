@@ -5,6 +5,7 @@ import com.wwsis.modelowanie.healthgenic.service.UserService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,11 +28,13 @@ public class UserController {
     }
 
     @PutMapping("/users/{id}")
+    @PreAuthorize("hasRole('ROLE_DOCTOR')")
     public User update(@PathVariable String id, @RequestBody User user) {
         return service.update(id, user);
     }
 
     @DeleteMapping("/users/{id}")
+    @PreAuthorize("hasRole('ROLE_DOCTOR')")
     public void delete(@PathVariable String id) {
         service.delete(id);
     }

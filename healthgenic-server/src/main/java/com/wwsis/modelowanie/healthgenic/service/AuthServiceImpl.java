@@ -21,7 +21,7 @@ public class AuthServiceImpl implements AuthService {
                 .stream()
                 .filter(user -> user.getUsername().equals(login) && user.getPassword().equals(password))
                 .findFirst()
-                .map(found -> "token")
+                .map(found -> "healthgenic")
                 .orElse(null);
     }
 
