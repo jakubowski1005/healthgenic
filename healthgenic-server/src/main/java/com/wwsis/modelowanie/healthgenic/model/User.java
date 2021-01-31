@@ -31,6 +31,9 @@ public class User {
 
     Set<Role> roles;
 
+    Set<String> relatedUserIds;
+    UserData userData;
+
     boolean enabled;
     boolean accountNonExpired;
     boolean credentialsNonExpired;

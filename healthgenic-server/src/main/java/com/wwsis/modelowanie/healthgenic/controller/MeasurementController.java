@@ -1,6 +1,7 @@
 package com.wwsis.modelowanie.healthgenic.controller;
 
 import com.wwsis.modelowanie.healthgenic.model.Measurement;
+import com.wwsis.modelowanie.healthgenic.security.JwtProvider;
 import com.wwsis.modelowanie.healthgenic.service.MeasurementService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @AllArgsConstructor
@@ -16,10 +18,14 @@ import java.util.List;
 public class MeasurementController {
 
     MeasurementService service;
+    JwtProvider jwt;
+
+    //add, findOwn, findByUser
 
     @GetMapping("/measurements")
-    public List<Measurement> findAll() {
-        return service.findAll();
+    public List<Measurement> findAll(@RequestHeader Map<String, String> headers) {
+        System.out.println(headers);
+        return service.findAll(jwt.getAllClaimsFromToken(headers.get("Authorization")));
     }
 
     @GetMapping("/measurements/{id}")

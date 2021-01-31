@@ -1,10 +1,14 @@
 package com.wwsis.modelowanie.healthgenic.security;
 
+import com.wwsis.modelowanie.healthgenic.dao.UserRepository;
 import com.wwsis.modelowanie.healthgenic.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import java.security.Key;
+
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -14,15 +18,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
+@AllArgsConstructor
 public class JwtProvider {
 
     @Value("${secret-key}")
-    private String secret;
+    private final String secret;
 
     @Value("${expiration-time}")
-    private String expirationTime;
+    private final String expirationTime;
 
     private Key key;
+
+    UserRepository repository;
+
+//    public JwtProvider(UserRepository repository) {
+//        this.repository = repository;
+//    }
 
     @PostConstruct
     public void init() {
@@ -52,6 +63,12 @@ public class JwtProvider {
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
+    }
+
+    public String getIdFromToken(String token) {
+        if (token.startsWith("Bearer")) token = token.substring(7);
+        User found = repository.findByUsername(getIdFromToken(token)).orElse(null);
+        return (found != null) ? found.getId() : null;
     }
 
     public String getUsernameFromToken(String token) {
