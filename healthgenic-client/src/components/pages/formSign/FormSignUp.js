@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import useForm from "./useForm";
 import validate from "./validateInfo";
+import Toogle from "../Toogle";
 import "./Form.css";
 
-const FormSignUp = ({ submitForm, isOn, handleToggle, onColor }) => {
+const FormSignUp = ({ submitForm }) => {
   const { handleChange, handleSubmit, values, errors } = useForm(
     submitForm,
     validate
   );
+
+  const [valueOn, setValueOn] = useState(false);
 
   return (
     <div className="form-content-right">
@@ -29,28 +32,28 @@ const FormSignUp = ({ submitForm, isOn, handleToggle, onColor }) => {
         <div className="form-inputs">
           <label className="form-label">First name</label>
           <input
-            id="firstName"
+            id="name"
             type="text"
-            name="firstName"
+            name="name"
             className="form-input"
             placeholder="Enter your first name"
-            value={values.firstName}
+            value={values.name}
             onChange={handleChange}
           />
-          {errors.firstName && <p>{errors.firstName}</p>}
+          {errors.name && <p>{errors.name}</p>}
         </div>
         <div className="form-inputs">
           <label className="form-label">Last name</label>
           <input
-            id="lastName"
+            id="surename"
             type="text"
-            name="lastName"
+            name="surename"
             className="form-input"
             placeholder="Enter your last name"
-            value={values.lastName}
+            value={values.surename}
             onChange={handleChange}
           />
-          {errors.lastName && <p>{errors.lastName}</p>}
+          {errors.surename && <p>{errors.surename}</p>}
         </div>
         <div className="form-inputs">
           <label htmlFor="email" className="form-label">
@@ -98,25 +101,6 @@ const FormSignUp = ({ submitForm, isOn, handleToggle, onColor }) => {
           {errors.password2 && <p>{errors.password2}</p>}
         </div>
 
-        <div className="switch-la">
-          <div className="text-la">Patient</div>
-          <input
-            checked={isOn}
-            onChange={handleToggle}
-            className="react-switch-checkbox"
-            id={`react-switch-new`}
-            type="checkbox"
-          />
-          <label
-            style={{ background: isOn && onColor }}
-            className="react-switch-label"
-            htmlFor={`react-switch-new`}
-          >
-            <span className={`react-switch-button`}></span>
-          </label>
-          <div className="text-la">Doctor </div>
-          {errors.role && <p>{errors.role}</p>}
-        </div>
         <button className="form-input-btn" type="submit">
           Sign up
         </button>

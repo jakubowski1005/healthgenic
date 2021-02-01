@@ -1,12 +1,12 @@
 [
     {
-      "id" : 1,
+      "id" : "orange",
       "firstName": "Anna",
       "lastName": "Las",
       "email": "anna@anna.com"
     },
     {
-      "id" : 2,
+      "id" : "banana",
       "firstName": "Karol",
       "lastName": "Piła",
       "email": "karol@karol.com"

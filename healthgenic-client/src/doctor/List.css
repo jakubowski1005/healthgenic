@@ -117,7 +117,7 @@
 
 #table-names {
   border-collapse: collapse;
-  padding-top: 10px;
+  padding-top: 20px;
   width: 100%;
   color: #ffffff;
 }
@@ -152,6 +152,7 @@
 
 #table-measurments {
   border-collapse: collapse;
+  margin-left: 100px;
   padding-top: 50px;
   width: 60%;
   color: rgb(0, 0, 0);
@@ -193,7 +194,8 @@
   width: 22%;
   max-width: 100%; /* useful when width is set to anything other than 100% */
   box-sizing: border-box;
-  margin-top: 20px;
+  margin-top: 50px;
+  margin-left: 100px;
   margin-bottom: 30px;
   border: 1.5px solid rgb(0, 0, 0);
   border-radius: 0.5em;

@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import Compose from "./Compose";
-import ToolbarButton from "./ToolbarButton";
-import Message from "./Mess";
-import moment from "moment";
-import dataMessage from "../jsons/dataMessage.json";
 
+import moment from "moment";
+
+import Compose from "./Compose";
+import Message from "./Mess";
+import dataMessage from "../jsons/dataMessage.json";
+import MessageService from "../../services/MessageService";
 import "./MessageList.css";
 
 const MY_USER_ID = "apple";
 
 export default function MessageForm(props) {
-  const PATIENT_USER_ID = "orange";
+  const { PATIENT_USER_ID } = props;
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -18,7 +19,7 @@ export default function MessageForm(props) {
   }, []);
 
   const getMessages = () => {
-    var tempMessages = dataMessage;
+    var tempMessages = MessageService.getMessages(); //!!!dataMessage||  pobieranie wiadomości z serwisu
     setMessages([...messages, ...tempMessages]);
   };
 
@@ -32,42 +33,42 @@ export default function MessageForm(props) {
       let current = messages[i];
       let next = messages[i + 1];
       let isMine =
-        current.sendFrom === MY_USER_ID && current.sendTo === PATIENT_USER_ID;
-      let currentMoment = moment(current.timestamp);
+        current.from === MY_USER_ID && current.to === PATIENT_USER_ID;
+      let currentMoment = moment(current.sentAt);
       let prevBySameAuthor = false;
       let nextBySameAuthor = false;
       let startsSequence = true;
       let endsSequence = true;
-      let showTimestamp = true;
+      let showsentAt = true;
 
       if (previous) {
-        let previousMoment = moment(previous.timestamp);
+        let previousMoment = moment(previous.sentAt);
         let previousDuration = moment.duration(
           currentMoment.diff(previousMoment)
         );
-        prevBySameAuthor = previous.sendFrom === current.sendFrom;
+        prevBySameAuthor = previous.from === current.from;
 
         if (prevBySameAuthor && previousDuration.as("hours") < 1) {
           startsSequence = false;
         }
 
         if (previousDuration.as("hours") < 1) {
-          showTimestamp = false;
+          showsentAt = false;
         }
       }
 
       if (next) {
-        let nextMoment = moment(next.timestamp);
+        let nextMoment = moment(next.sentAt);
         let nextDuration = moment.duration(nextMoment.diff(currentMoment));
-        nextBySameAuthor = next.sendFrom === current.autsendFromhor;
+        nextBySameAuthor = next.from === current.autfromhor;
 
         if (nextBySameAuthor && nextDuration.as("hours") < 1) {
           endsSequence = false;
         }
       }
       if (
-        PATIENT_USER_ID === current.sendTo ||
-        PATIENT_USER_ID === current.sendFrom ||
+        PATIENT_USER_ID === current.to ||
+        PATIENT_USER_ID === current.from ||
         isMine
       ) {
         tempMessages.push(
@@ -76,7 +77,7 @@ export default function MessageForm(props) {
             isMine={isMine}
             startsSequence={startsSequence}
             endsSequence={endsSequence}
-            showTimestamp={showTimestamp}
+            showsentAt={showsentAt}
             data={current}
           />
         );
@@ -93,14 +94,9 @@ export default function MessageForm(props) {
     <div className="message-list">
       <div className="message-list-container">{renderMessages()}</div>
       <Compose
-        rightItems={[
-          <ToolbarButton key="photo" icon="ion-ios-camera" />,
-          <ToolbarButton key="image" icon="ion-ios-image" />,
-          <ToolbarButton key="audio" icon="ion-ios-mic" />,
-          <ToolbarButton key="money" icon="ion-ios-card" />,
-          <ToolbarButton key="games" icon="ion-logo-game-controller-b" />,
-          <ToolbarButton key="emoji" icon="ion-ios-happy" />,
-        ]}
+        USER_ID={MY_USER_ID}
+        PATIENT_ID={PATIENT_USER_ID}
+        date={moment().format("DD-MM-YYYY hh:mm:ss")}
       />
     </div>
   );

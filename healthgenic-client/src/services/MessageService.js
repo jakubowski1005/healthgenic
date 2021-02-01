@@ -1,6 +1,6 @@
-const URL = 'http://localhost:8080/messages';
-const token = sessionStorage.getItem('token');
-const bearerToken = 'Bearer ' + token;
+const URL = "http://localhost:8080/messages";
+const token = sessionStorage.getItem("token");
+const bearerToken = "Bearer " + token;
 
 // ta metoda powinna byc wywolywana po zaladowania komponentu messages w panelu lekarza lub pacjenta
 export const getMessages = async () => {
@@ -12,7 +12,6 @@ export const getMessages = async () => {
         }
     });
 }
-
 // ta metoda powinna byc wywolywana po wcisnieciu przycisku send message w tych panelach
 // przyjmuje ona obiekt body ktory powinien wygladac mniej wiecej tak
 /*
@@ -23,6 +22,7 @@ export const getMessages = async () => {
         content: tresc wiadomosci w postaci stringa
     }
  */
+
 export const sendMessage = async body => {
     return fetch(URL, {
         method: 'POST',
@@ -33,4 +33,3 @@ export const sendMessage = async body => {
         body: JSON.stringify(body)
     });
 }
-

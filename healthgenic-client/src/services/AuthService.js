@@ -1,6 +1,6 @@
-const URL_REGISTER = 'http://localhost:8080/auth/register';
-const URL_LOGIN = 'http://localhost:8080/auth/login';
-const URL_LOGOUT = 'http://localhost:3000/'
+const URL_REGISTER = "http://localhost:8080/auth/register";
+const URL_LOGIN = "http://localhost:8080/auth/login";
+const URL_LOGOUT = "http://localhost:3000/";
 
 //metoda powinna byc wywolywana po nacisnieciu sign up button
 // cialem metody powinno byc:
@@ -32,6 +32,7 @@ export const register = async body => {
         password: pass
     }
  */
+
 export const login = async body => {
     return fetch(URL_LOGIN, {
         method: 'POST',
@@ -50,7 +51,6 @@ export const login = async body => {
 
 // metoda wywolywana przy wylogowaniu, czysci sessionStorage i przenosi uzytkownika na strone glowna
 export const logout = () => {
-    sessionStorage.clear();
-    window.location.replace(URL_LOGOUT);
-}
-
+  sessionStorage.clear();
+  window.location.replace(URL_LOGOUT);
+};
