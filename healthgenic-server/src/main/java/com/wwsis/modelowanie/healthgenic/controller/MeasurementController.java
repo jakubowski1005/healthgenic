@@ -1,12 +1,10 @@
 package com.wwsis.modelowanie.healthgenic.controller;
 
 import com.wwsis.modelowanie.healthgenic.model.Measurement;
-import com.wwsis.modelowanie.healthgenic.security.JwtProvider;
 import com.wwsis.modelowanie.healthgenic.service.MeasurementService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,36 +16,19 @@ import java.util.Map;
 public class MeasurementController {
 
     MeasurementService service;
-    JwtProvider jwt;
-
-    //add, findOwn, findByUser
-
-    @GetMapping("/measurements")
-    public List<Measurement> findAll(@RequestHeader Map<String, String> headers) {
-        System.out.println(headers);
-        return service.findAll(jwt.getAllClaimsFromToken(headers.get("Authorization")));
-    }
 
     @GetMapping("/measurements/{id}")
-    public Measurement findById(@PathVariable String id) {
-        return service.findById(id);
+    public List<Measurement> findAllByUserId(@RequestHeader Map<String, String> headers, @PathVariable String id) {
+        return service.findAllByUserId(headers.get("authorization").substring(7), id);
+    }
+
+    @GetMapping("/measurements")
+    public List<Measurement> findAllByOwner(@RequestHeader Map<String, String> headers) {
+        return service.findAllByUserId(headers.get("authorization").substring(7), "null");
     }
 
     @PostMapping("/measurements")
-    @PreAuthorize("hasRole('ROLE_PATIENT')")
-    public Measurement insert(@RequestBody Measurement measurement) {
-        return service.insert(measurement);
-    }
-
-    @PutMapping("/measurements/{id}")
-    @PreAuthorize("hasRole('ROLE_PATIENT')")
-    public Measurement update(@PathVariable String id, @RequestBody Measurement measurement) {
-        return service.update(id, measurement);
-    }
-
-    @DeleteMapping("/measurements/{id}")
-    @PreAuthorize("hasRole('ROLE_PATIENT')")
-    public void delete(@PathVariable String id) {
-        service.delete(id);
+    public Measurement insert(@RequestHeader Map<String, String> headers, @RequestBody Measurement measurement) {
+        return service.insert(headers.get("authorization").substring(7), measurement);
     }
 }

@@ -6,9 +6,7 @@ import com.wwsis.modelowanie.healthgenic.service.AuthService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Map;
@@ -22,13 +20,13 @@ public class AuthController {
 
     @PostMapping("/auth/register")
     public Map<String, String> register(@Valid @RequestBody SignupRequest request) {
-        return service.register(request.getLogin(), request.getEmail(), request.getPassword(), request.getRole());
+        return service.register(request.getLogin(), request.getEmail(), request.getPassword(), request.getRole(),
+                request.getName(), request.getSurname());
     }
 
     @PostMapping("/auth/login")
     public Map<String, String> login(@Valid @RequestBody SigninRequest request) {
-        return service.login(request.getLogin(), request.getPassword());
+        return service.login(request.getEmail(), request.getPassword());
     }
-
 
 }

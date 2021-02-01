@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 public interface AuthService {
-    Map<String, String> login(String login, String password);
-    Map<String, String> register(String login, String email, String password, @NotNull Role role);
+    Map<String, String> login(String email, String password);
+    Map<String, String> register(String login, String email, String password, @NotNull Role role,
+                                 String name, String surname);
 }

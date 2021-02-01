@@ -19,6 +19,5 @@ public class Message {
     String from;
     String to;
     Date sentAt;
-    String subject;
     String content;
 }

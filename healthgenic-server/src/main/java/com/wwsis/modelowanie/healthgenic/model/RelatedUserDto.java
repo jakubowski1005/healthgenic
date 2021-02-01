@@ -2,15 +2,18 @@ package com.wwsis.modelowanie.healthgenic.model;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
-import javax.validation.constraints.NotNull;
-
 @Data
+@Builder
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class SigninRequest {
-    @NotNull String email;
-    @NotNull String password;
+public class RelatedUserDto {
+    String id;
+    String username;
+    String name;
+    String surname;
+    Integer age;
 }

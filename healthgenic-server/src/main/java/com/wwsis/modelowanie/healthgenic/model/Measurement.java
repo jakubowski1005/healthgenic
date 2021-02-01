@@ -16,6 +16,6 @@ public class Measurement {
     String id;
     String ownerId;
     String type;
-    Double value;
+    String value;
     String unit;
 }
