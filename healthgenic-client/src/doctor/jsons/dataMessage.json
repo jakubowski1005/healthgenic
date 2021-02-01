@@ -1,0 +1,50 @@
+[
+  {
+  "id": 1,
+  "sendFrom": "apple",
+  "sendTo" : "orange",
+  "message":
+    "Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.",
+  "timestamp": "2020-12-21 12:28"
+},
+{
+  "id": 2,
+  "sendFrom": "orange",
+  "sendTo" : "apple",
+  "message":
+    "It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!",
+  "timestamp": "2020-12-21 12:28"
+},
+{
+  "id": 3,
+  "sendFrom": "orange",
+  "sendTo" : "apple",
+  "message":
+    "Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.",
+  "timestamp": "2020-12-21 12:28"
+},
+{
+  "id": 4,
+  "sendFrom": "apple",
+  "sendTo" : "orange",
+  "message":
+    "It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!",
+  "timestamp": "2020-12-21 12:28"
+},
+{
+  "id": 5,
+  "sendFrom": "banana",
+  "sendTo" : "apple",
+  "message":
+    "Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.",
+  "timestamp": "2020-12-21 12:28"
+},
+{
+  "id": 6,
+  "sendFrom": "apple",
+  "sendTo" : "banana",
+  "message":
+    "It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!",
+  "timestamp": "2020-12-21 13:28"
+}
+]

@@ -11,6 +11,6 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class SigninRequest {
-    @NotNull String login;
+    @NotNull String email;
     @NotNull String password;
 }

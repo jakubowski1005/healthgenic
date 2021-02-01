@@ -5,10 +5,10 @@ import com.wwsis.modelowanie.healthgenic.service.MeasurementService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @AllArgsConstructor
@@ -17,31 +17,18 @@ public class MeasurementController {
 
     MeasurementService service;
 
-    @GetMapping("/measurements")
-    public List<Measurement> findAll() {
-        return service.findAll();
+    @GetMapping("/measurements/{id}")
+    public List<Measurement> findAllByUserId(@RequestHeader Map<String, String> headers, @PathVariable String id) {
+        return service.findAllByUserId(headers.get("authorization").substring(7), id);
     }
 
-    @GetMapping("/measurements/{id}")
-    public Measurement findById(@PathVariable String id) {
-        return service.findById(id);
+    @GetMapping("/measurements")
+    public List<Measurement> findAllByOwner(@RequestHeader Map<String, String> headers) {
+        return service.findAllByUserId(headers.get("authorization").substring(7), "null");
     }
 
     @PostMapping("/measurements")
-    @PreAuthorize("hasRole('ROLE_DOCTOR')")
-    public Measurement insert(@RequestBody Measurement measurement) {
-        return service.insert(measurement);
-    }
-
-    @PutMapping("/measurements/{id}")
-    @PreAuthorize("hasRole('ROLE_DOCTOR')")
-    public Measurement update(@PathVariable String id, @RequestBody Measurement measurement) {
-        return service.update(id, measurement);
-    }
-
-    @DeleteMapping("/measurements/{id}")
-    @PreAuthorize("hasRole('ROLE_DOCTOR')")
-    public void delete(@PathVariable String id) {
-        service.delete(id);
+    public Measurement insert(@RequestHeader Map<String, String> headers, @RequestBody Measurement measurement) {
+        return service.insert(headers.get("authorization").substring(7), measurement);
     }
 }

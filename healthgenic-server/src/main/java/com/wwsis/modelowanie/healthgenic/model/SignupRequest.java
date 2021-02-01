@@ -15,4 +15,7 @@ public class SignupRequest {
     @NotNull String login;
     @NotNull @Email String email;
     @NotNull String password;
+    @NotNull Role role;
+    @NotNull String name;
+    @NotNull String surname;
 }
