@@ -4,14 +4,13 @@ const bearerToken = 'Bearer ' + token;
 
 // ta metoda powinna byc wywolywana po zaladowania komponentu messages w panelu lekarza lub pacjenta
 export const getMessages = async () => {
-    const response = await fetch(URL, {
+    return fetch(URL, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authentication': bearerToken
+            'authorization': bearerToken
         }
     });
-    return response.json();
 }
 
 // ta metoda powinna byc wywolywana po wcisnieciu przycisku send message w tych panelach
@@ -25,14 +24,13 @@ export const getMessages = async () => {
     }
  */
 export const sendMessage = async body => {
-    const response = await fetch(URL, {
+    return fetch(URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authentication': bearerToken
+            'authorization': bearerToken
         },
         body: JSON.stringify(body)
     });
-    return response.json();
 }
 

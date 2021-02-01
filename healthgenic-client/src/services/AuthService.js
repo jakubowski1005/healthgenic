@@ -15,14 +15,13 @@ const URL_LOGOUT = 'http://localhost:3000/'
     }
  */
 export const register = async body => {
-    const response = await fetch(URL_REGISTER, {
+    return fetch(URL_REGISTER, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(body)
     });
-    return response.json();
 }
 
 //metoda powinna byc wywolywana po nacisnieciu sign in button
@@ -34,7 +33,7 @@ export const register = async body => {
     }
  */
 export const login = async body => {
-    const response = await fetch(URL_LOGIN, {
+    return fetch(URL_LOGIN, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -44,8 +43,9 @@ export const login = async body => {
 
     // nie wiem czy to tak zadziala, powinno, response.json() zwroci obiekt js na podstawie response, ktory powinien
     // byc stringiem 'Bearer <token>' a substring powinien odciac to 'Bearer '
-    sessionStorage.setItem('token', response.json().substring(7));
-    return true;
+
+    // to nizej powinno byc w bloku then [ login({ body }).then(() => { sessionStorage.setItem('token', response.json().substring(7)) ...
+    //sessionStorage.setItem('token', response.json().substring(7));
 }
 
 // metoda wywolywana przy wylogowaniu, czysci sessionStorage i przenosi uzytkownika na strone glowna
