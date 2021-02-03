@@ -20,8 +20,8 @@ export default function validateInfo(values) {
     errors.name = "First name required";
   }
 
-  if (!values.surename.trim()) {
-    errors.surename = "Last name required";
+  if (!values.surname.trim()) {
+    errors.surname = "Last name required";
   }
 
   if (!values.password2) {

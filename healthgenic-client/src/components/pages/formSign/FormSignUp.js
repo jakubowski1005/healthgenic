@@ -56,15 +56,15 @@ const FormSignUp = ({ submitForm }) => {
         <div className="form-inputs">
           <label className="form-label">Last name</label>
           <input
-            id="surename"
+            id="surname"
             type="text"
-            name="surename"
+            name="surname"
             className="form-input"
             placeholder="Enter your last name"
-            value={values.surename}
+            value={values.surname}
             onChange={handleChange}
           />
-          {errors.surename && <p>{errors.surename}</p>}
+          {errors.surname && <p>{errors.surname}</p>}
         </div>
         <div className="form-inputs">
           <label htmlFor="email" className="form-label">
