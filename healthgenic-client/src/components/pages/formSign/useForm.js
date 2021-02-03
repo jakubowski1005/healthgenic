@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import AuthService from "../../../services/AuthService";
+import { register, login, logout } from "../../../services/AuthService";
 
 const useForm = (callback, validate) => {
   const [values, setValues] = useState({
@@ -7,6 +7,7 @@ const useForm = (callback, validate) => {
     name: "",
     surename: "",
     email: "",
+    role: "PATIENT",
     password: "",
     password2: "",
   });
@@ -31,7 +32,8 @@ const useForm = (callback, validate) => {
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
-      AuthService.register(values); // !!!!!!!!!! AUTHSERVICE !!!!!!!!!!!!!!
+      console.log(values.role);
+      register(values); // !!!!!!!!!! AUTHSERVICE !!!!!!!!!!!!!!
     }
   }, [errors]);
 

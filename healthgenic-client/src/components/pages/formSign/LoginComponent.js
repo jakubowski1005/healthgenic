@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import AuthService from "../../../services/AuthService";
+import { register, login, logout } from "../../../services/AuthService";
 
 export class LoginComponent extends Component {
   constructor() {
@@ -26,9 +26,9 @@ export class LoginComponent extends Component {
       return;
     }
 
-    AuthService.login(this.state.email, this.state.password)
+    login(this.state.email, this.state.password)
       .then((res) => {
-        AuthService.login(
+        login(
           this.state.email, //!!!!!!1
           res.data.accessToken
         );

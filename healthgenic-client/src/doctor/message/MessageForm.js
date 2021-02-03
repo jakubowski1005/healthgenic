@@ -5,7 +5,7 @@ import moment from "moment";
 import Compose from "./Compose";
 import Message from "./Mess";
 import dataMessage from "../jsons/dataMessage.json";
-import MessageService from "../../services/MessageService";
+import { getMessages, sendMessage } from "../../services/MessageService";
 import "./MessageList.css";
 
 const MY_USER_ID = "apple";
@@ -15,11 +15,11 @@ export default function MessageForm(props) {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    getMessages();
+    getMessagess();
   }, []);
 
-  const getMessages = () => {
-    var tempMessages = MessageService.getMessages(); //!!!dataMessage||  pobieranie wiadomości z serwisu
+  const getMessagess = () => {
+    var tempMessages = getMessages(); //!!!dataMessage||  pobieranie wiadomości z serwisu
     setMessages([...messages, ...tempMessages]);
   };
 

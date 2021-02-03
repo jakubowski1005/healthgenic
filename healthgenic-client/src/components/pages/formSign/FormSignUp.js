@@ -12,6 +12,17 @@ const FormSignUp = ({ submitForm }) => {
 
   const [valueOn, setValueOn] = useState(false);
 
+  let options = {
+    PATIENT: "PATIENT",
+    DOCTOR: "DOCTOR",
+  };
+
+  const [userInput, setUserInput] = useState("");
+
+  const inputchangehandler = (event) => {
+    setUserInput(event.target.value);
+  };
+
   return (
     <div className="form-content-right">
       <form onSubmit={handleSubmit} className="form" noValidate>
@@ -100,6 +111,16 @@ const FormSignUp = ({ submitForm }) => {
           />
           {errors.password2 && <p>{errors.password2}</p>}
         </div>
+
+        <select name="role" value={values.role} onChange={handleChange}>
+          {Object.keys(options).map(function (key) {
+            return (
+              <option key={key} value={key}>
+                {options[key]}
+              </option>
+            );
+          })}
+        </select>
 
         <button className="form-input-btn" type="submit">
           Sign up

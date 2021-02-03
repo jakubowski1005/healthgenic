@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import MessageService from "../../services/MessageService";
+import { getMessages, sendMessage } from "../../services/MessageService";
 import "./Compose.css";
 
 export default function Compose({ USER_ID, PATIENT_ID, date }) {
@@ -24,7 +24,7 @@ export default function Compose({ USER_ID, PATIENT_ID, date }) {
     console.log(state.message);
     messageData["content"] = state.message;
     console.log(messageData);
-    MessageService.sendMessage(messageData);
+    sendMessage(messageData);
     setState({ message: "" });
   };
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import AuthService from "../../../services/AuthService";
+import { register, login, logout } from "../../../services/AuthService";
 import userD from "../../../doctor/jsons/userD.json";
 
 const useFormLogin = (callback, validate) => {
@@ -28,7 +28,12 @@ const useFormLogin = (callback, validate) => {
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
-      AuthService.login(values); // !!!!!!!!!! AUTHSERVICE !!!!!!!!!!!!!!
+      login(values); // !!!!!!!!!! AUTHSERVICE !!!!!!!!!!!!!!
+
+      login({ values }).then((response) => {
+        sessionStorage.setItem("token", response.json().substring(0, 7));
+        // window.location.assign("/");
+      });
     }
   }, [errors]);
 
