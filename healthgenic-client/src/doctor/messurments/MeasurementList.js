@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import dataMesurment from "../jsons/dataMesurments.json";
-import { getMeasurements } from "../../services/MeasurementService";
+import { getPatientsMeasurements } from "../../services/MeasurementService";
 import "../List.css";
 
 function MeasurementList(props) {
   const { PATIENT_USER_ID } = props;
   const [userInput, setUserInput] = useState("");
 
-  var dataMesurment = getMeasurements(PATIENT_USER_ID); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  const dataMesurment = getPatientsMeasurements(PATIENT_USER_ID)
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(err => console.error(err));
 
   const inputchangehandler = (event) => {
     setUserInput(event.target.value);
