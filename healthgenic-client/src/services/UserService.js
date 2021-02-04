@@ -8,7 +8,7 @@ export const getUserInfo = async () => {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authentication': bearerToken
+            'authorization': bearerToken
         }
     });
 }
@@ -19,7 +19,7 @@ export const getRelatedUsers = async () => {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authentication': bearerToken
+            'authorization': bearerToken
         }
     });
 }
@@ -30,7 +30,7 @@ export const deleteAccount = async () => {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authentication': bearerToken
+            'authorization': bearerToken
         }
     });
 }

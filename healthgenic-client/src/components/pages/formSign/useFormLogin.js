@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { register, login, logout } from "../../../services/AuthService";
+import { getUserInfo, getRelatedUsers } from "../../../services/UserService";
 import userD from "../../../doctor/jsons/userD.json";
 
 const useFormLogin = (callback, validate) => {
