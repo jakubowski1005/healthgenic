@@ -118,6 +118,7 @@ public class DataUtils {
                     .type("Blood Sugar Level")
                     .value(String.valueOf(70 + (99 - 70) * random.nextDouble()))
                     .ownerId(userId)
+                    .createdAt(new Date())
                     .build();
 
             var msr2 = Measurement.builder()
@@ -125,6 +126,7 @@ public class DataUtils {
                     .type("Blood Pressure")
                     .value(String.valueOf(110 + (150 - 110) * random.nextDouble()) + '/' + (75 + (99 - 75) * random.nextDouble()))
                     .ownerId(userId)
+                    .createdAt(new Date())
                     .build();
 
             var msr3 = Measurement.builder()
@@ -132,6 +134,7 @@ public class DataUtils {
                     .type("Heart Rate")
                     .value(String.valueOf(40 + (120 - 40) * random.nextDouble()))
                     .ownerId(userId)
+                    .createdAt(new Date())
                     .build();
 
             measurements.add(msr1);

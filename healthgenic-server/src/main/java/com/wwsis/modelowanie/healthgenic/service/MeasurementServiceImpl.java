@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,6 +57,7 @@ public class MeasurementServiceImpl implements MeasurementService {
                 .unit(measurement.getUnit())
                 .value(measurement.getValue())
                 .ownerId(user.getId())
+                .createdAt(new Date())
                 .build());
     }
 
