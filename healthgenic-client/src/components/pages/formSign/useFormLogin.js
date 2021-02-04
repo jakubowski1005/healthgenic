@@ -28,12 +28,13 @@ const useFormLogin = (callback, validate) => {
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
-      login(values); // !!!!!!!!!! AUTHSERVICE !!!!!!!!!!!!!!
-
-      login({ values }).then((response) => {
-        sessionStorage.setItem("token", response.json().substring(0, 7));
-        // window.location.assign("/");
-      });
+      login(values)
+          .then(response => response.json())
+          .then(data => {
+              sessionStorage.setItem("token", data.token.substring(7));
+              window.location.assign("/");
+          })
+          .catch(err => console.error(err));
     }
   }, [errors]);
 
