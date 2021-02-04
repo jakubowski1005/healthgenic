@@ -15,6 +15,15 @@ export const getMeasurements = async () => {
 
 // ta metoda powinna byc wywolywana podczas ladowania componentu measurementList przez LEKARZA dla konkretnego PACJENTA
 export const getPatientsMeasurements = async id => {
+    console.log('id', id)
+    console.log(URL + `/${id}`)
+    console.log(bearerToken)
+    console.log({
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': bearerToken
+        }});
     return fetch(URL + `/${id}`, {
         method: 'GET',
         headers: {

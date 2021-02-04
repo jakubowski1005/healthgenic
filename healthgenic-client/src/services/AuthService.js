@@ -34,8 +34,6 @@ export const register = async (body) => {
  */
 
 export const login = async (body) => {
-  console.log("aaa");
-
   return fetch(URL_LOGIN, {
     method: "POST",
     headers: {

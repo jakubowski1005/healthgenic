@@ -31,7 +31,7 @@ const useFormLogin = (callback, validate) => {
       login(values)
           .then(response => response.json())
           .then(data => {
-              sessionStorage.setItem("token", data.token.substring(7));
+              sessionStorage.setItem("token", data.token);
               window.location.assign("/");
           })
           .catch(err => console.error(err));

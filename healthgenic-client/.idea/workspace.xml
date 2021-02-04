@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3bec1c48-d1a0-4f3b-af59-2a8e670eca9e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/formSign/useFormLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/formSign/useFormLogin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/doctor/messurments/MeasurementList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/doctor/messurments/MeasurementList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/AuthService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/AuthService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/MeasurementService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/MeasurementService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +54,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1612461702585</updated>
-      <workItem from="1612461706709" duration="3535000" />
+      <workItem from="1612461706709" duration="5424000" />
     </task>
     <servers />
   </component>

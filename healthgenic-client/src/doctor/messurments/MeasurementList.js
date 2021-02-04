@@ -27,7 +27,7 @@ function MeasurementList(props) {
 
   const types = _getUniqueCampusName();
 
-  const Measurements = ({ ownerId, type, date, value, unit, input }) => {
+  const Measurements = ({ ownerId, type, createdAt, value, unit, input }) => {
     if (ownerId !== PATIENT_USER_ID) return <div />;
     if (input !== type) return <div />;
     return (
@@ -35,7 +35,7 @@ function MeasurementList(props) {
         <tbody>
           <tr>
             <td>
-              <h4>{date}</h4>
+              <h4>{createdAt}</h4>
             </td>
             <td>
               <h4>{value}</h4>
@@ -85,7 +85,7 @@ function MeasurementList(props) {
                 key={key}
                 ownerId={data.ownerId}
                 type={data.type}
-                date={data.date}
+                date={data.createdAt}
                 value={data.value}
                 unit={data.unit}
                 input={userInput}
