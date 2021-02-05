@@ -39,7 +39,7 @@ public class MessageServiceImpl implements MessageService {
                 .content(message.getContent())
                 .sentAt(message.getSentAt())
                 .to(message.getTo())
-                .from(user.getUsername())
+                .from(user.getId())
                 .build();
 
         return repository.insert(toInsert);
