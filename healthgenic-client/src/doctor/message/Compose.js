@@ -1,18 +1,35 @@
 import React, { useState } from "react";
 import { getMessages, sendMessage } from "../../services/MessageService";
+import { getUserInfo } from "../../services/UserService";
 import "./Compose.css";
 
-export default function Compose({ USER_ID, PATIENT_ID, date }) {
+export default function Compose({ PATIENT_ID, date }) {
   const [state, setState] = useState({ message: "" });
+  const [stateId, setStateId] = useState({ id: "" });
 
   const messageData = {
-    from: USER_ID,
+    from: stateId.id,
     to: PATIENT_ID,
     sentAt: date,
   };
 
+  const userIdGet = () => {
+    getUserInfo()
+      .then((response) => response.json())
+      .then((data) => {
+        setStateId({
+          id: data.id,
+        });
+        console.log(data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   const handleChange = (event) => {
     setState({ message: event.target.value });
+    userIdGet();
   };
 
   const handleSubmit = (event) => {
@@ -21,7 +38,7 @@ export default function Compose({ USER_ID, PATIENT_ID, date }) {
       return;
     }
     //setState({ message: event.target.value });
-    console.log(state.message);
+    event.preventDefault();
     messageData["content"] = state.message;
     console.log(messageData);
     sendMessage(messageData);

@@ -1,6 +1,6 @@
 const URL_REGISTER = "http://localhost:8080/auth/register";
 const URL_LOGIN = "http://localhost:8080/auth/login";
-const URL_LOGOUT = "http://localhost:3000/";
+const URL_LOGOUT = "http://localhost:3000/login";
 
 //metoda powinna byc wywolywana po nacisnieciu sign up button
 // cialem metody powinno byc:

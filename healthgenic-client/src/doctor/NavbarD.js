@@ -11,6 +11,8 @@ function NavbarD() {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
+  const logoutBtnClick = () => logout();
+
   const showButton = () => {
     if (window.innerWidth <= 960) {
       setButton(false);
@@ -65,17 +67,11 @@ function NavbarD() {
               </Link>
             </li>
             <li>
-              <Link
-                to="/"
-                className="nav-links-mobile"
-                onClick={closeMobileMenu}
-                onClick={logout}
-              >
+              <Link to="/login" className="nav-links" onClick={logoutBtnClick}>
                 Sign out
               </Link>
             </li>
           </ul>
-          {button && <Button buttonStyle="btn--outline">SIGN OUT</Button>}
         </div>
       </nav>
     </>

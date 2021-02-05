@@ -30,12 +30,27 @@ const useFormLogin = (callback, validate) => {
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
       login(values)
-          .then(response => response.json())
-          .then(data => {
-              sessionStorage.setItem("token", data.token);
-              window.location.assign("/");
+        .then((response) => response.json())
+        .then((data) => {
+          sessionStorage.setItem("token", data.token);
+          console.log(data);
+
+          getUserInfo()
+        .then((response) => response.json())
+        .then((data1) => {
+          console.log(data1);
+          if(data1.roles[0] == "DOCTOR") {
+            window.location.assign("/patientList");
+          }
+          else {window.location.assign("/");
+          }        
           })
-          .catch(err => console.error(err));
+        .catch((e) => {
+         console.log(e);
+        });
+
+        })
+        .catch((err) => console.error(err));
     }
   }, [errors]);
 

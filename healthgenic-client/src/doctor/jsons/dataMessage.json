@@ -1,31 +1,31 @@
 [
   {
   "id": 1,
-  "from": "apple",
-  "to" : "orange",
+  "from": "601d661b261b0a1d54e6580c",
+  "to" : "601d661a261b0a1d54e6580a",
   "message":
     "Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.",
   "sentAt": "2020-12-21 12:28"
 },
 {
   "id": 2,
-  "from": "orange",
-  "to" : "apple",
+  "from": "601d661b261b0a1d54e6580c",
+  "to" : "601d661a261b0a1d54e6580a",
   "message":
     "It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!",
   "sentAt": "2020-12-21 12:28"
 },
 {
   "id": 3,
-  "from": "orange",
-  "to" : "apple",
+  "from": "601d661a261b0a1d54e6580a",
+  "to" : "601d661b261b0a1d54e6580c",
   "message":
     "Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.",
   "sentAt": "2020-12-21 12:28"
 },
 {
   "id": 4,
-  "from": "apple",
+  "from": "601d661b261b0a1d54e6580e",
   "to" : "orange",
   "message":
     "It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!",
@@ -34,7 +34,7 @@
 {
   "id": 5,
   "from": "banana",
-  "to" : "apple",
+  "to" : "601d661b261b0a1d54e6580e",
   "message":
     "Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.",
   "sentAt": "2020-12-21 12:28"

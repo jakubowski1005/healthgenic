@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
-
 import moment from "moment";
-
 import Compose from "./Compose";
 import Message from "./Mess";
 import dataMessage from "../jsons/dataMessage.json";
 import { getMessages, sendMessage } from "../../services/MessageService";
 import "./MessageList.css";
 
-const MY_USER_ID = "apple";
+//const MY_USER_ID = "apple";
 
 export default function MessageForm(props) {
   const { PATIENT_USER_ID } = props;
@@ -19,7 +17,15 @@ export default function MessageForm(props) {
   }, []);
 
   const getMessagess = () => {
-    var tempMessages = getMessages(); //!!!dataMessage||  pobieranie wiadomości z serwisu
+    var tempMessages = dataMessage; //getMessages(); //!!!dataMessage||  pobieranie wiadomości z serwisu
+    getMessages()
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
     setMessages([...messages, ...tempMessages]);
   };
 
@@ -33,7 +39,8 @@ export default function MessageForm(props) {
       let current = messages[i];
       let next = messages[i + 1];
       let isMine =
-        current.from === MY_USER_ID && current.to === PATIENT_USER_ID;
+        // current.from === MY_USER_ID &&
+        current.to === PATIENT_USER_ID;
       let currentMoment = moment(current.sentAt);
       let prevBySameAuthor = false;
       let nextBySameAuthor = false;
@@ -93,11 +100,7 @@ export default function MessageForm(props) {
   return (
     <div className="message-list">
       <div className="message-list-container">{renderMessages()}</div>
-      <Compose
-        USER_ID={MY_USER_ID}
-        PATIENT_ID={PATIENT_USER_ID}
-        date={moment().format("DD-MM-YYYY hh:mm:ss")}
-      />
+      <Compose PATIENT_ID={PATIENT_USER_ID} date={moment().format()} />
     </div>
   );
 }
