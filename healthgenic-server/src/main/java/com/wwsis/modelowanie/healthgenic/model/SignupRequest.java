@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class SignupRequest {
-    @NotNull String login;
+    @NotNull String username;
     @NotNull @Email String email;
     @NotNull String password;
     @NotNull Role role;

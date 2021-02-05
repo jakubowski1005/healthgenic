@@ -20,7 +20,7 @@ public class AuthController {
 
     @PostMapping("/auth/register")
     public Map<String, String> register(@Valid @RequestBody SignupRequest request) {
-        return service.register(request.getLogin(), request.getEmail(), request.getPassword(), request.getRole(),
+        return service.register(request.getUsername(), request.getEmail(), request.getPassword(), request.getRole(),
                 request.getName(), request.getSurname());
     }
 

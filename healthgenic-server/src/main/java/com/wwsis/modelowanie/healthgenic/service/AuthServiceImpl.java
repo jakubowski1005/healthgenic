@@ -41,18 +41,18 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     @SneakyThrows
-    public Map<String, String> register(String login, String email, String password, Role role,
+    public Map<String, String> register(String username, String email, String password, Role role,
                                         String name, String surname) {
         var found = repository.findAll()
                 .stream()
-                .filter(user -> user.getUsername().equals(login) || user.getEmail().equals(email))
+                .filter(user -> user.getUsername().equals(username) || user.getEmail().equals(email))
                 .findFirst();
 
         if (found.isPresent()) throw new CredentialException("User with provided credentials exists.");
 
         repository.insert(User.builder()
                 .email(email)
-                .username(login)
+                .username(username)
                 .password(encoder.encode(password))
                 .roles(Set.of(role))
                 .userData(UserData.builder().name(name).surname(surname).build())
