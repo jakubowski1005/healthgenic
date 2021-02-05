@@ -17,16 +17,17 @@ export default function MessageForm(props) {
   }, []);
 
   const getMessagess = () => {
-    var tempMessages = dataMessage; //getMessages(); //!!!dataMessage||  pobieranie wiadomości z serwisu
+    //var tempMessages = dataMessage; //getMessages(); //!!!dataMessage||  pobieranie wiadomości z serwisu
     getMessages()
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        setMessages([...messages, ...data]);
       })
       .catch((e) => {
         console.log(e);
       });
-    setMessages([...messages, ...tempMessages]);
+    //setMessages([...messages, ...tempMessages]);
   };
 
   const renderMessages = () => {

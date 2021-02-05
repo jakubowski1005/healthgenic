@@ -45,7 +45,7 @@ export default class Message extends Component {
   }
 
   setActivePatient(patient, index) {
-    console.log(patient);
+    // console.log(patient);
     this.setState({
       currentPatient: patient,
       currentIndex: index,

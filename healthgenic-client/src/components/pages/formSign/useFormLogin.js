@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { register, login, logout } from "../../../services/AuthService";
-import { getUserInfo, getRelatedUsers } from "../../../services/UserService";
-import userD from "../../../doctor/jsons/userD.json";
+import { login } from "../../../services/AuthService";
+import { getUserInfo } from "../../../services/UserService";
 
 const useFormLogin = (callback, validate) => {
   const [values, setValues] = useState({
@@ -29,26 +28,29 @@ const useFormLogin = (callback, validate) => {
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
+      sessionStorage.clear();
       login(values)
         .then((response) => response.json())
         .then((data) => {
           sessionStorage.setItem("token", data.token);
           console.log(data);
 
-          getUserInfo()
-        .then((response) => response.json())
-        .then((data1) => {
-          console.log(data1);
-          if(data1.roles[0] == "DOCTOR") {
-            window.location.assign("/patientList");
+          if (sessionStorage.getItem("token")) {
+            getUserInfo()
+              .then((response) => response.json())
+              .then((data1) => {
+                console.log(data1);
+                if (data1.roles[0] == "DOCTOR") {
+                  window.location.assign("/patientList");
+                  return false;
+                } else {
+                  window.location.assign("/");
+                }
+              })
+              .catch((e) => {
+                console.log(e);
+              });
           }
-          else {window.location.assign("/");
-          }        
-          })
-        .catch((e) => {
-         console.log(e);
-        });
-
         })
         .catch((err) => console.error(err));
     }

@@ -40,8 +40,8 @@ export default function Compose({ PATIENT_ID, date }) {
     //setState({ message: event.target.value });
     event.preventDefault();
     messageData["content"] = state.message;
-    console.log(messageData);
     sendMessage(messageData);
+    console.log(messageData);
     setState({ message: "" });
   };
 
