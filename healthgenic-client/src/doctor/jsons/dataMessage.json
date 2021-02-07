@@ -1,50 +1,50 @@
 [
   {
   "id": 1,
-  "sendFrom": "apple",
-  "sendTo" : "orange",
+  "from": "601d661b261b0a1d54e6580c",
+  "to" : "601d661a261b0a1d54e6580a",
   "message":
     "Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.",
-  "timestamp": "2020-12-21 12:28"
+  "sentAt": "2020-12-21 12:28"
 },
 {
   "id": 2,
-  "sendFrom": "orange",
-  "sendTo" : "apple",
+  "from": "601d661b261b0a1d54e6580c",
+  "to" : "601d661a261b0a1d54e6580a",
   "message":
     "It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!",
-  "timestamp": "2020-12-21 12:28"
+  "sentAt": "2020-12-21 12:28"
 },
 {
   "id": 3,
-  "sendFrom": "orange",
-  "sendTo" : "apple",
+  "from": "601d661a261b0a1d54e6580a",
+  "to" : "601d661b261b0a1d54e6580c",
   "message":
     "Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.",
-  "timestamp": "2020-12-21 12:28"
+  "sentAt": "2020-12-21 12:28"
 },
 {
   "id": 4,
-  "sendFrom": "apple",
-  "sendTo" : "orange",
+  "from": "601d661b261b0a1d54e6580e",
+  "to" : "orange",
   "message":
     "It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!",
-  "timestamp": "2020-12-21 12:28"
+  "sentAt": "2020-12-22 12:28"
 },
 {
   "id": 5,
-  "sendFrom": "banana",
-  "sendTo" : "apple",
+  "from": "banana",
+  "to" : "601d661b261b0a1d54e6580e",
   "message":
     "Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.",
-  "timestamp": "2020-12-21 12:28"
+  "sentAt": "2020-12-21 12:28"
 },
 {
   "id": 6,
-  "sendFrom": "apple",
-  "sendTo" : "banana",
+  "from": "apple",
+  "to" : "banana",
   "message":
     "It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!",
-  "timestamp": "2020-12-21 13:28"
+  "sentAt": "2020-12-21 13:28"
 }
 ]

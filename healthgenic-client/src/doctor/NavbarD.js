@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "../components/Button";
 import { Link } from "react-router-dom";
+import { Button } from "../components/Button";
+import { register, login, logout } from "../services/AuthService";
 import "../components/Navbar.css";
 
 function NavbarD() {
@@ -9,6 +10,8 @@ function NavbarD() {
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+
+  const logoutBtnClick = () => logout();
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -64,16 +67,11 @@ function NavbarD() {
               </Link>
             </li>
             <li>
-              <Link
-                to="/"
-                className="nav-links-mobile"
-                onClick={closeMobileMenu}
-              >
+              <Link to="/login" className="nav-links" onClick={logoutBtnClick}>
                 Sign out
               </Link>
             </li>
           </ul>
-          {button && <Button buttonStyle="btn--outline">SIGN OUT</Button>}
         </div>
       </nav>
     </>

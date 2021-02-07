@@ -185,3 +185,45 @@ formm {
   background: rgb(248, 248, 248);
   color: rgb(0, 0, 0);
 }
+
+#i3 {
+  font-size: 16px;
+  display: block;
+  float: left;
+  margin-right: 50px;
+  padding-left: 5px;
+  line-height: 30px;
+  width: 22%;
+  height: 30px;
+  border-radius: 3px;
+  background: rgb(248, 248, 248);
+  color: rgb(0, 0, 0);
+}
+
+#i4 {
+  font-size: 16px;
+  display: block;
+  float: left;
+  margin-left: 10px;
+  padding-left: 5px;
+  line-height: 30px;
+  width: 22%;
+  height: 30px;
+  border-radius: 3px;
+  background: rgb(248, 248, 248);
+  color: rgb(0, 0, 0);
+}
+
+.btn-edit {
+  background-color: transparent;
+  color: #ffffff;
+  padding: 10px 22px;
+  font-size: 20px;
+  border: 1px solid var(--primary);
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}

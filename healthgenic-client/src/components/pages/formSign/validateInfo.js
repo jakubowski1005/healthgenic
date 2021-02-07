@@ -16,12 +16,12 @@ export default function validateInfo(values) {
     errors.username = "Username required";
   }
 
-  if (!values.firstName.trim()) {
-    errors.firstName = "First name required";
+  if (!values.name.trim()) {
+    errors.name = "First name required";
   }
 
-  if (!values.lastName.trim()) {
-    errors.lastName = "Last name required";
+  if (!values.surname.trim()) {
+    errors.surname = "Last name required";
   }
 
   if (!values.password2) {

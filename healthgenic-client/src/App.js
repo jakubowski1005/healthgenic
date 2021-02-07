@@ -8,6 +8,7 @@ import Doctor from "./doctor/Doctor";
 import PatientList from "./doctor/PatientList";
 import MessageD from "./doctor/message/Message";
 import ScrollToTop from "./components/ScrollToTop";
+import AuthenticatedRoute from "./components/authentication/AuthenticatedRoute";
 
 function App() {
   return (
@@ -18,9 +19,9 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/sign-up" component={SignUp} />
-          <Route path="/doctor" component={Doctor} />
-          <Route path="/patientList" component={PatientList} />
-          <Route path="/messagesD" component={MessageD} />
+          <AuthenticatedRoute path="/doctor" component={Doctor} />
+          <AuthenticatedRoute path="/patientList" component={PatientList} />
+          <AuthenticatedRoute path="/messagesD" component={MessageD} />
         </Switch>
       </Router>
     </>

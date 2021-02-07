@@ -8,7 +8,6 @@ import Navbar from "../Navbar";
 
 const SignUp = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [value, setValue] = useState(false);
   function submitForm() {
     setIsSubmitted(true);
   }
@@ -26,12 +25,7 @@ const SignUp = () => {
                 src="images/img-med.jpg"
               />
             </div>
-            <FormSignUp
-              submitForm={submitForm}
-              isOn={value}
-              onColor="#00cec8"
-              handleToggle={() => setValue(!value)}
-            />
+            <FormSignUp submitForm={submitForm} />
           </div>
           <Footer />
         </React.Fragment>

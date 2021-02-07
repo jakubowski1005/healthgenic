@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "ownerId": 1,
+    "ownerId": "orange",
     "type": "temp",
     "date" : "2020-12-28",
     "value": "36.7",
@@ -12,12 +12,12 @@
     "ownerId": 3,
     "type": "temp",
     "date" : "2020-12-28",
-    "value": "36.7",
+    "value": "37.7",
     "unit": "°C"
   },
   {
     "id": 3,
-    "ownerId": 1,
+    "ownerId": "orange",
     "type": "weight",
     "date" : "2020-12-28",
     "value": "52",
@@ -33,7 +33,7 @@
   },
   {
     "id": 5,
-    "ownerId": 1,
+    "ownerId": "banana",
     "type": "blood glucose concentration",
     "date" : "2020-12-28",
     "value": "88",
